@@ -21,7 +21,7 @@ def detail(request, question_id):
 
 def results(request, question_id):
     question = get_object_or_404(Question,pk=question_id)
-    return render(request, "polls/results.html",{"question":question})
+    return render(request, "polls/results.html", {"question": question})
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -39,7 +39,7 @@ def vote(request, question_id):
     else:
         selected_choice.votes = F("votes") + 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse("polls/results", args=(question_id,)))
+        return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
 
 #def index(request):
 #    latest_question_list = Question.objects.order_by("-pub_date")[:5]
